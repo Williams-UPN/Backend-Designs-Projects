@@ -372,6 +372,7 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
+    description: '';
     displayName: 'Global';
     pluralName: 'globals';
     singularName: 'global';

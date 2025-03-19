@@ -1,5 +1,17 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ComponentLink extends Struct.ComponentSchema {
+  collectionName: 'components_component_links';
+  info: {
+    displayName: 'Link';
+  };
+  attributes: {
+    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    text: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface FirstComponentDefaultSeo extends Struct.ComponentSchema {
   collectionName: 'components_first_component_default_seos';
   info: {
@@ -49,11 +61,27 @@ export interface FirstComponentSocialLinks extends Struct.ComponentSchema {
   };
 }
 
+export interface LayaoutMainSection extends Struct.ComponentSchema {
+  collectionName: 'components_layaout_main_sections';
+  info: {
+    description: '';
+    displayName: 'mainSection';
+  };
+  attributes: {
+    Heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    link: Schema.Attribute.Component<'component.link', true>;
+    subHeading: Schema.Attribute.String;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'component.link': ComponentLink;
       'first-component.default-seo': FirstComponentDefaultSeo;
       'first-component.social-links': FirstComponentSocialLinks;
+      'layaout.main-section': LayaoutMainSection;
     }
   }
 }

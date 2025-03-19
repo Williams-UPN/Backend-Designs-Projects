@@ -1,7 +1,8 @@
 {
   "collectionName": "components_first_component_default_seos",
   "info": {
-    "displayName": "DefaultSeo"
+    "displayName": "DefaultSeo",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -15,33 +16,14 @@
       "required": true,
       "minLength": 5
     },
-    "twitterTitle": {
-      "type": "string",
-      "required": true,
-      "minLength": 5
-    },
-    "twitterDescription": {
-      "type": "text",
-      "required": true,
-      "minLength": 5
-    },
     "shareImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
-    },
-    "twitterImage": {
-      "allowedTypes": [
-        "files",
-        "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     }
   }
 }

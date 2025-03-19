@@ -14,10 +14,6 @@
       "type": "string",
       "required": true
     },
-    "twitterUrl": {
-      "type": "string",
-      "required": true
-    },
     "tiktokUrl": {
       "type": "string",
       "required": true

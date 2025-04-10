@@ -1,7 +1,6 @@
 import path from 'path';
 
 export default ({ env }) => {
-  // El cliente lo defines en tu .env con DATABASE_CLIENT=postgres
   const client = env('DATABASE_CLIENT', 'sqlite');
 
   const connections = {
@@ -13,14 +12,14 @@ export default ({ env }) => {
         user: env('DATABASE_USERNAME', 'strapi'),
         password: env('DATABASE_PASSWORD', 'strapi'),
         ssl: env.bool('DATABASE_SSL', false) && {
-          key: env('DATABASE_SSL_KEY', undefined),
-          cert: env('DATABASE_SSL_CERT', undefined),
-          ca: env('DATABASE_SSL_CA', undefined),
-          capath: env('DATABASE_SSL_CAPATH', undefined),
-          cipher: env('DATABASE_SSL_CIPHER', undefined),
+          key: env('DATABASE_SSL_KEY'),
+          cert: env('DATABASE_SSL_CERT'),
+          ca: env('DATABASE_SSL_CA'),
+          capath: env('DATABASE_SSL_CAPATH'),
+          cipher: env('DATABASE_SSL_CIPHER'),
           rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
         },
-      }, 
+      },
       pool: {
         min: env.int('DATABASE_POOL_MIN', 2),
         max: env.int('DATABASE_POOL_MAX', 10),
@@ -28,20 +27,20 @@ export default ({ env }) => {
     },
     postgres: {
       connection: {
-        // Si prefieres usar DATABASE_URL, Strapi lo descompone internamente
-        connectionString: env('DATABASE_URL', null),
+        // Usa DATABASE_URL si está definida
+        connectionString: env('DATABASE_URL', undefined),
 
-        // Estos valores se usan si NO proporcionas DATABASE_URL
+        // Respaldo con variables separadas
         host: env('DATABASE_HOST', 'dpg-cvs43gur433s73btmsv0-a.oregon-postgres.render.com'),
         port: env.int('DATABASE_PORT', 5432),
         database: env('DATABASE_NAME', 'designs_projects_mlxv'),
         user: env('DATABASE_USERNAME', 'designs_projects_mlxv_user'),
         password: env('DATABASE_PASSWORD', 'sVXTCwPJIFaxpVB4lqCo0EWmOKSluAm4'),
 
-        // SSL en Render normalmente no es necesario, déjalo false
-        ssl: env.bool('DATABASE_SSL', false) && {
-          rejectUnauthorized: false,
-        },
+        // Activa SSL si DATABASE_SSL=true
+        ssl: env.bool('DATABASE_SSL', false)
+          ? { rejectUnauthorized: false }
+          : false,
 
         schema: env('DATABASE_SCHEMA', 'public'),
       },

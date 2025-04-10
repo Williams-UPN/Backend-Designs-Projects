@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_component_galleries",
+  "info": {
+    "displayName": "gallery",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sliderImageProjects": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "nameImage": {
+      "type": "string"
+    }
+  }
+}

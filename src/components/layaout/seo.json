@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_layaout_seos",
+  "info": {
+    "displayName": "Seo",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "Slider": {
+      "displayName": "Slider",
+      "type": "component",
+      "repeatable": true,
+      "component": "component.slider"
+    }
+  }
+}

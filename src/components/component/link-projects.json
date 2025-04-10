@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_component_link_projects",
+  "info": {
+    "displayName": "LinkProjects",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "text"
+    },
+    "imageProject": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "linkGallery": {
+      "type": "component",
+      "repeatable": true,
+      "component": "component.gallery"
+    }
+  }
+}

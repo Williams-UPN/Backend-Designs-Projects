@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layaout_projects",
+  "info": {
+    "displayName": "Projects",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "text"
+    },
+    "link": {
+      "type": "component",
+      "repeatable": true,
+      "component": "component.link-projects"
+    }
+  }
+}

@@ -1,17 +1,11 @@
 {
-  "collectionName": "components_layaout_main_sections",
+  "collectionName": "components_component_link_silders",
   "info": {
-    "displayName": "mainSection",
+    "displayName": "linkService",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "heading": {
-      "type": "string"
-    },
-    "subHeading": {
-      "type": "string"
-    },
     "image": {
       "type": "media",
       "multiple": false,
@@ -20,10 +14,17 @@
         "images"
       ]
     },
-    "link": {
+    "subHeading": {
+      "type": "text"
+    },
+    "heading": {
+      "type": "string"
+    },
+    "Gallery": {
+      "displayName": "gallery",
       "type": "component",
       "repeatable": true,
-      "component": "component.link"
+      "component": "component.gallery"
     }
   }
 }

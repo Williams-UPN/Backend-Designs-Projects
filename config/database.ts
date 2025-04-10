@@ -27,7 +27,7 @@ export default ({ env }) => {
         connectionString: env('DATABASE_URL'),
         host: env('DATABASE_HOST', 'localhost'),
         port: env.int('DATABASE_PORT', 5432),
-        database: env('DATABASE_NAME', 'Designs-Projects'),
+        database: env('DATABASE_NAME', 'designs_projects'),
         user: env('DATABASE_USERNAME', 'postgres'),
         password: env('DATABASE_PASSWORD', '23432559'),
         ssl: env.bool('DATABASE_SSL', false) && {

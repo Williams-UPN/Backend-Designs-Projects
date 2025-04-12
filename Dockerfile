@@ -1,21 +1,31 @@
-# 1. Imagen base con Node.js
-FROM node:18-alpine
+# ———————— Etapa 1: Builder ————————
+FROM node:18-alpine AS builder
 
-# 2. Crear carpeta de la app
+# Directorio de trabajo
 WORKDIR /usr/src/app
 
-# 3. Copiar package.json y lock, e instalar deps
+# Copiamos package.json y package-lock.json, e instalamos deps
 COPY package*.json ./
-RUN npm install
+RUN npm ci
 
-# 4. Copiar todo el código
+# Copiamos el resto del código y compilamos TS
 COPY . .
-
-# 5. Build de TypeScript (si tu proyecto usa TS)
 RUN npm run build
 
-# 6. Exponer el puerto Strapi
+# ————— Etapa 2: Producción ——————
+FROM node:18-alpine AS production
+
+WORKDIR /usr/src/app
+
+# Copiamos sólo lo necesario desde builder
+COPY --from=builder /usr/src/app/package*.json ./
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/dist ./dist
+# Si tienes assets públicos (admin, public), también:
+COPY --from=builder /usr/src/app/public ./public
+
+# Exponemos el puerto que usa Strapi
 EXPOSE 1337
 
-# 7. Comando de arranque en producción
-CMD ["npm", "run", "start"]
+# Arrancamos Strapi en modo producción
+CMD ["node", "dist/server.js"]

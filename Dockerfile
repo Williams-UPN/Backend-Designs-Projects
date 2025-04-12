@@ -1,31 +1,36 @@
-# ———————— Etapa 1: Builder ————————
-FROM node:18-alpine AS builder
+# ————— Etapa 1: Builder —————
+FROM node:18-slim AS builder
 
-# Directorio de trabajo
+# Instalamos herramientas de compilación y limpiamos cache
+RUN apt-get update && \
+    apt-get install -y build-essential python3 && \
+    rm -rf /var/lib/apt/lists/*
+
 WORKDIR /usr/src/app
 
-# Copiamos package.json y package-lock.json, e instalamos deps
+# Copiamos package.json y lockfile, e instalamos deps
 COPY package*.json ./
 RUN npm ci
 
-# Copiamos el resto del código y compilamos TS
+# Copiamos el resto y compilamos TS
 COPY . .
 RUN npm run build
 
-# ————— Etapa 2: Producción ——————
-FROM node:18-alpine AS production
+# ————— Etapa 2: Producción —————
+FROM node:18-slim AS production
 
 WORKDIR /usr/src/app
 
-# Copiamos sólo lo necesario desde builder
+# Copiamos solo lo necesario
 COPY --from=builder /usr/src/app/package*.json ./
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/dist ./dist
-# Si tienes assets públicos (admin, public), también:
-COPY --from=builder /usr/src/app/public ./public
+# Si tienes assets públicos:
+# COPY --from=builder /usr/src/app/public ./public
 
-# Exponemos el puerto que usa Strapi
+# Limpiamos posibles caches de npm (opcional)
+RUN npm prune --production
+
 EXPOSE 1337
 
-# Arrancamos Strapi en modo producción
 CMD ["node", "dist/server.js"]

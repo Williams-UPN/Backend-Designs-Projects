@@ -1,5 +1,5 @@
 # 1. Imagen base con Node.js
-FROM node:16-alpine
+FROM node:18-alpine
 
 # 2. Crear carpeta de la app
 WORKDIR /usr/src/app

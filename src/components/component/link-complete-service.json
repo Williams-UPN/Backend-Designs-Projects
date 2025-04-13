@@ -6,25 +6,30 @@
   },
   "options": {},
   "attributes": {
-    "heading": {
-      "type": "string"
-    },
-    "subHeading": {
+    "subHeadingComplete": {
       "type": "text"
-    },
-    "imageVideos": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "files",
-        "images"
-      ]
     },
     "videoLink": {
       "type": "component",
       "repeatable": false,
       "component": "component.link"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "heading": {
+      "type": "string"
+    },
+    "subHeading": {
+      "type": "text"
     }
   }
 }

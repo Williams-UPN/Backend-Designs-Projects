@@ -9,11 +9,6 @@
     "mainHeading": {
       "type": "string"
     },
-    "link": {
-      "type": "component",
-      "repeatable": true,
-      "component": "component.link-silder"
-    },
     "linkCompleteService": {
       "type": "component",
       "repeatable": true,

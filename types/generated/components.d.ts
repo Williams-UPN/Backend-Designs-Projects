@@ -48,8 +48,9 @@ export interface ComponentLinkCompleteService extends Struct.ComponentSchema {
   };
   attributes: {
     heading: Schema.Attribute.String;
-    imageVideos: Schema.Attribute.Media<'files' | 'images'>;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     subHeading: Schema.Attribute.Text;
+    subHeadingComplete: Schema.Attribute.Text;
     videoLink: Schema.Attribute.Component<'component.link', false>;
   };
 }
@@ -175,7 +176,6 @@ export interface LayaoutServicesSection extends Struct.ComponentSchema {
       'images' | 'files' | 'videos' | 'audios'
     >;
     imageService: Schema.Attribute.Media<'images' | 'files'>;
-    link: Schema.Attribute.Component<'component.link-silder', true>;
     linkCompleteService: Schema.Attribute.Component<
       'component.link-complete-service',
       true

@@ -1,0 +1,82 @@
+# 1. Instalación del driver SQLite
+# npm install better-sqlite3 --save
+
+
+# 2. Variables de entorno (.env)
+# # -----------------------
+# # Secrets de Strapi
+# # -----------------------
+# APP_KEYS=N5+vgfwPDRl8wxpLBQmeWQ==,ifFZa3GmIPtkalOXJbTGcQ==,1Jorjk2gyrLFKl5uzSpyow==,Uh+s3cwLJP+lNeElE9qWJQ==
+# API_TOKEN_SALT=qw2GDuUEn7EFEFH9vneZ8Q==
+# ADMIN_JWT_SECRET=UO5x9pKfxFirnH3vTQPbhQ==
+# TRANSFER_TOKEN_SALT=TBYZN/yzWExerlKTEuAzKw==
+# JWT_SECRET=cxxbDhhKDglQM8oUlNjw1Q==
+
+# # -----------------------
+# # Base de datos
+# # -----------------------
+
+# # Para SQLite (por defecto)
+# DATABASE_CLIENT=sqlite
+# DATABASE_FILENAME=.tmp/data.db
+
+# # (o para Postgres)
+# # DATABASE_CLIENT=postgres
+# # DATABASE_HOST=localhost
+# # DATABASE_PORT=5432
+# # DATABASE_NAME=designs_projects
+# # DATABASE_USERNAME=postgres
+# # DATABASE_PASSWORD=23432559
+# # DATABASE_SSL=false
+# # (opcional) DATABASE_URL=postgresql://...
+
+# # (o para MySQL)
+# # DATABASE_CLIENT=mysql
+# # DATABASE_HOST=...
+# # DATABASE_PORT=3306
+# # DATABASE_NAME=...
+# # DATABASE_USERNAME=...
+# # DATABASE_PASSWORD=...
+# # DATABASE_SSL=false
+
+# 3. Configuración de config/database.js
+
+# import path from 'path';
+
+# export default ({ env }) => {
+#   const client = env('DATABASE_CLIENT', 'sqlite');
+
+#   const configs = {
+#     sqlite: {
+#       client: 'sqlite',
+#       connection: {
+#         filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
+#       },
+#       useNullAsDefault: true,
+#     },
+#     postgres: { /* ... */ },
+#     mysql: { /* ... */ },
+#   };
+
+#   return {
+#     connection: {
+#       ...configs[client],
+#       acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
+#     },
+#   };
+# };
+
+# 4. Configuración de config/server.js
+
+# module.exports = ({ env }) => ({
+#   host: env('HOST', '0.0.0.0'),
+#   port: env.int('PORT', 1337),
+#   app: {
+#     keys: env.array('APP_KEYS', [
+#       'defaultKey1',
+#       'defaultKey2',
+#       'defaultKey3',
+#       'defaultKey4',
+#     ]),
+#   },
+# });
